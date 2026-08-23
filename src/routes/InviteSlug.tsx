@@ -6,6 +6,7 @@ import { Countdown } from "@/components/invite/Countdown";
 import { Gallery } from "@/components/invite/Gallery";
 import { GuestList } from "@/components/invite/GuestList";
 import { MusicPlayer } from "@/components/invite/MusicPlayer";
+import { SiteLink } from "@/components/invite/SiteLink";
 import { Particles } from "@/components/invite/Particles";
 import { RsvpForm } from "@/components/invite/RsvpForm";
 import { Schedule } from "@/components/invite/Schedule";
@@ -62,6 +63,7 @@ export default function InviteSlug() {
 
       <GuestList lang={lang} slug={slug} />
       <MusicPlayer lang={lang} youtubeId={youtubeId} />
+      <SiteLink />
 
       {/* language switch */}
       <div className="glass fixed left-4 top-4 z-30 flex gap-1 rounded-full p-1">
