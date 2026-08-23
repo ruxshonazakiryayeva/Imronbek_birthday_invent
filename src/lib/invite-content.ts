@@ -65,7 +65,7 @@ type Dict = {
 export const T: Record<Lang, Dict> = {
   uz: {
     invitation: "Taklifnoma",
-    heroTitle: "Imronbek 5 yoshga to'ladi!",
+    heroTitle: "{name} {age} yoshga to'ladi!",
     heroSub: "Kichkina sarkardamiz bilan bu ajoyib kunni birga nishonlaymiz!",
     days: "kun",
     hours: "soat",
@@ -76,7 +76,7 @@ export const T: Record<Lang, Dict> = {
     placeText: "Manzilni shu yerga yozing",
     mapBtn: "Xaritada ko'rish",
     mapSoon: "Xarita havolasi tez orada",
-    gallery: "Imronbekning eng qiziqarli lahzalari",
+    gallery: "Eng qiziqarli lahzalar",
     gallerySub: "Sarguzashtlardan lavhalar",
     rsvp: "Kelishingizni tasdiqlang",
     rsvpSub: "Iltimos, bir necha so'z yozib qoldiring",
@@ -114,7 +114,7 @@ export const T: Record<Lang, Dict> = {
   },
   ru: {
     invitation: "Приглашение",
-    heroTitle: "Имронбеку исполняется 5 лет!",
+    heroTitle: "С днём рождения, {name}! Уже {age}!",
     heroSub: "Отпразднуем этот особенный день вместе с нашим маленьким героем!",
     days: "дней",
     hours: "часов",
@@ -125,7 +125,7 @@ export const T: Record<Lang, Dict> = {
     placeText: "Укажите адрес здесь",
     mapBtn: "Смотреть на карте",
     mapSoon: "Ссылка на карту скоро появится",
-    gallery: "Самые яркие моменты Имронбека",
+    gallery: "Самые яркие моменты",
     gallerySub: "Кадры из приключений",
     rsvp: "Подтвердите участие",
     rsvpSub: "Пожалуйста, оставьте пару слов",
@@ -163,7 +163,7 @@ export const T: Record<Lang, Dict> = {
   },
   en: {
     invitation: "Invitation",
-    heroTitle: "Imronbek turns 5!",
+    heroTitle: "{name} turns {age}!",
     heroSub: "Join us to celebrate this special day with our little explorer!",
     days: "days",
     hours: "hours",
@@ -174,7 +174,7 @@ export const T: Record<Lang, Dict> = {
     placeText: "Add the venue address here",
     mapBtn: "View on map",
     mapSoon: "Map link coming soon",
-    gallery: "Imronbek's brightest moments",
+    gallery: "The brightest moments",
     gallerySub: "Snapshots from the adventure",
     rsvp: "Please RSVP",
     rsvpSub: "Leave us a few words",
