@@ -9,7 +9,7 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      invitation_settings: {
+      imronbek_invitation_settings: {
         Row: {
           slug: string;
           child_name: string;
@@ -48,7 +48,7 @@ export type Database = {
         };
         Relationships: [];
       };
-      invitation_rsvp: {
+      imronbek_invitation_rsvp: {
         Row: {
           id: string;
           created_at: string;

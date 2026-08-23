@@ -33,7 +33,7 @@ export function useInviteSettings(slug: string = PARTY.invitationSlug) {
   const reload = useCallback(async () => {
     setLoading(true);
     const { data, error } = await supabase
-      .from("invitation_settings")
+      .from("imronbek_invitation_settings")
       .select("*")
       .eq("slug", slug)
       .maybeSingle();

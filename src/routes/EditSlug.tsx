@@ -22,7 +22,7 @@ export default function EditSlug() {
     const eventDateWithTz =
       form.event_date.length === 16 ? `${form.event_date}:00+05:00` : form.event_date;
 
-    const { error } = await supabase.from("invitation_settings").upsert({
+    const { error } = await supabase.from("imronbek_invitation_settings").upsert({
       slug: form.slug,
       child_name: form.child_name,
       age: form.age,
@@ -53,7 +53,7 @@ export default function EditSlug() {
       const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
       const path = `${slug}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
       const { error: uploadError } = await supabase.storage
-        .from("invitation-photos")
+        .from("imronbek-invitation-photos")
         .upload(path, file);
 
       if (uploadError) {
@@ -61,7 +61,7 @@ export default function EditSlug() {
         continue;
       }
 
-      const { data } = supabase.storage.from("invitation-photos").getPublicUrl(path);
+      const { data } = supabase.storage.from("imronbek-invitation-photos").getPublicUrl(path);
       newUrls.push(data.publicUrl);
     }
 

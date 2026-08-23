@@ -4,7 +4,7 @@
 -- ============================================================
 
 -- 1) Har bir taklifnoma nusxasi uchun sozlamalar jadvali
-CREATE TABLE public.invitation_settings (
+CREATE TABLE public.imronbek_invitation_settings (
   slug TEXT PRIMARY KEY,
   child_name TEXT NOT NULL DEFAULT 'Imronbek',
   age INTEGER NOT NULL DEFAULT 5,
@@ -17,26 +17,26 @@ CREATE TABLE public.invitation_settings (
   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
 );
 
-GRANT SELECT, INSERT, UPDATE ON public.invitation_settings TO anon;
-GRANT SELECT, INSERT, UPDATE ON public.invitation_settings TO authenticated;
-GRANT ALL ON public.invitation_settings TO service_role;
+GRANT SELECT, INSERT, UPDATE ON public.imronbek_invitation_settings TO anon;
+GRANT SELECT, INSERT, UPDATE ON public.imronbek_invitation_settings TO authenticated;
+GRANT ALL ON public.imronbek_invitation_settings TO service_role;
 
-ALTER TABLE public.invitation_settings ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.imronbek_invitation_settings ENABLE ROW LEVEL SECURITY;
 
 -- Har kim o'qishi, o'zi yaratgan/tahrirlayotgan taklifnomani yozishi mumkin
 -- (bu shablon "havola bilimiga asoslangan" tahrirlash modeli —
 --  parol talab qilmaydi, lekin slug taxmin qilib bo'lmaydigan uzun bo'ladi)
-CREATE POLICY "Anyone can view invitation settings" ON public.invitation_settings
+CREATE POLICY "Anyone can view invitation settings" ON public.imronbek_invitation_settings
   FOR SELECT TO anon, authenticated USING (true);
 
-CREATE POLICY "Anyone can create invitation settings" ON public.invitation_settings
+CREATE POLICY "Anyone can create invitation settings" ON public.imronbek_invitation_settings
   FOR INSERT TO anon, authenticated WITH CHECK (true);
 
-CREATE POLICY "Anyone can update invitation settings" ON public.invitation_settings
+CREATE POLICY "Anyone can update invitation settings" ON public.imronbek_invitation_settings
   FOR UPDATE TO anon, authenticated USING (true) WITH CHECK (true);
 
 -- 2) RSVP (kelish-kelmasligini tasdiqlash) jadvali
-CREATE TABLE public.invitation_rsvp (
+CREATE TABLE public.imronbek_invitation_rsvp (
   id UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
   invitation TEXT NOT NULL,
@@ -46,13 +46,13 @@ CREATE TABLE public.invitation_rsvp (
   comment TEXT
 );
 
-GRANT SELECT, INSERT ON public.invitation_rsvp TO anon;
-GRANT SELECT, INSERT ON public.invitation_rsvp TO authenticated;
-GRANT ALL ON public.invitation_rsvp TO service_role;
+GRANT SELECT, INSERT ON public.imronbek_invitation_rsvp TO anon;
+GRANT SELECT, INSERT ON public.imronbek_invitation_rsvp TO authenticated;
+GRANT ALL ON public.imronbek_invitation_rsvp TO service_role;
 
-ALTER TABLE public.invitation_rsvp ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.imronbek_invitation_rsvp ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "Anyone can submit an rsvp" ON public.invitation_rsvp
+CREATE POLICY "Anyone can submit an rsvp" ON public.imronbek_invitation_rsvp
   FOR INSERT TO anon, authenticated
   WITH CHECK (
     char_length(name) BETWEEN 1 AND 100
@@ -61,23 +61,23 @@ CREATE POLICY "Anyone can submit an rsvp" ON public.invitation_rsvp
     AND (comment IS NULL OR char_length(comment) <= 1000)
   );
 
-CREATE POLICY "Anyone can view rsvps" ON public.invitation_rsvp
+CREATE POLICY "Anyone can view rsvps" ON public.imronbek_invitation_rsvp
   FOR SELECT TO anon, authenticated USING (true);
 
 -- 3) Galereya rasmlari uchun Storage bucket
 -- (Buni Supabase Dashboard -> Storage bo'limida ham yaratish mumkin)
 INSERT INTO storage.buckets (id, name, public)
-VALUES ('invitation-photos', 'invitation-photos', true)
+VALUES ('imronbek-invitation-photos', 'imronbek-invitation-photos', true)
 ON CONFLICT (id) DO NOTHING;
 
-CREATE POLICY "Anyone can view invitation photos" ON storage.objects
+CREATE POLICY "Imronbek: anyone can view invitation photos" ON storage.objects
   FOR SELECT TO anon, authenticated
-  USING (bucket_id = 'invitation-photos');
+  USING (bucket_id = 'imronbek-invitation-photos');
 
-CREATE POLICY "Anyone can upload invitation photos" ON storage.objects
+CREATE POLICY "Imronbek: anyone can upload invitation photos" ON storage.objects
   FOR INSERT TO anon, authenticated
-  WITH CHECK (bucket_id = 'invitation-photos');
+  WITH CHECK (bucket_id = 'imronbek-invitation-photos');
 
-CREATE POLICY "Anyone can delete invitation photos" ON storage.objects
+CREATE POLICY "Imronbek: anyone can delete invitation photos" ON storage.objects
   FOR DELETE TO anon, authenticated
-  USING (bucket_id = 'invitation-photos');
+  USING (bucket_id = 'imronbek-invitation-photos');

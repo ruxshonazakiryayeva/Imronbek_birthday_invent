@@ -19,7 +19,7 @@ export function RsvpForm({ lang, slug }: { lang: Lang; slug?: string }) {
     e.preventDefault();
     if (!name.trim()) return;
     setBusy(true);
-    const { error } = await supabase.from("invitation_rsvp").insert({
+    const { error } = await supabase.from("imronbek_invitation_rsvp").insert({
       invitation: effectiveSlug,
       name: name.trim().slice(0, 100),
       attendance: attending ? "yes" : "no",

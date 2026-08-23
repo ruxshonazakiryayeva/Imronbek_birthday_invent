@@ -16,7 +16,7 @@ export default function EditIndex() {
     const createAndGo = async () => {
       const slug = makeSlug();
 
-      await supabase.from("invitation_settings").insert({
+      await supabase.from("imronbek_invitation_settings").insert({
         slug,
         child_name: PARTY.name,
         age: PARTY.age,

@@ -21,7 +21,7 @@ function Panel({ lang, slug }: { lang: Lang; slug: string }) {
     let active = true;
     setIsLoading(true);
     supabase
-      .from("invitation_rsvp")
+      .from("imronbek_invitation_rsvp")
       .select("id, name, attendance, guests, comment, created_at")
       .eq("invitation", slug)
       .order("created_at", { ascending: false })

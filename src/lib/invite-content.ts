@@ -1,7 +1,7 @@
 export const PARTY = {
   name: "Imronbek",
   age: 5,
-  // Bu shablonni invitation_settings jadvalidagi boshqa yozuvlardan ajratib turadigan noyob slug
+  // Bu shablonni imronbek_invitation_settings jadvalidagi boshqa yozuvlardan ajratib turadigan noyob slug
   invitationSlug: "imronbek-birthday",
   // Sana/vaqtni bu yerda o'zgartiring
   date: new Date("2026-11-15T16:00:00+05:00"),
