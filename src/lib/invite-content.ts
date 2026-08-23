@@ -86,7 +86,7 @@ export const T: Record<Lang, Dict> = {
     notComing: "Kelolmayman",
     guests: "Mehmonlar soni",
     wish: "Tabrik xati",
-    wishPh: "Botirimizga tilaklaringiz...",
+    wishPh: "Qahramonimizga tilaklaringiz...",
     send: "Yuborish",
     sending: "Yuborilmoqda...",
     thanks: "Rahmat! Javobingiz qabul qilindi.",
