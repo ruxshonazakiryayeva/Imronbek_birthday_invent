@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { CalendarHeart, Clock, MapPin, Rocket, Sparkles } from "lucide-react";
+import { CalendarHeart, Clock, MapPin, Rocket } from "lucide-react";
 import { toast } from "sonner";
 import { Countdown } from "@/components/invite/Countdown";
+import { Gallery } from "@/components/invite/Gallery";
 import { GuestList } from "@/components/invite/GuestList";
 import { MusicPlayer } from "@/components/invite/MusicPlayer";
 import { Particles } from "@/components/invite/Particles";
@@ -33,7 +34,7 @@ export default function Home() {
   const dateText = formatDateText(eventDate, lang);
   const timeText = formatTimeText(eventDate, lang);
 
-  const heroTitle = t.heroTitle.replace(PARTY.name, childName).replace(String(PARTY.age), String(age));
+  const heroTitle = t.heroTitle.replace("{name}", childName).replace("{age}", String(age));
 
   const openMap = () => {
     if (!mapUrl) {
@@ -127,30 +128,7 @@ export default function Home() {
         </section>
 
         {/* Gallery */}
-        <section className="mt-12">
-          <h2 className="font-display flex items-center gap-2 text-2xl text-foreground">
-            <Sparkles className="h-6 w-6 text-gold" />
-            {t.gallery}
-          </h2>
-          <p className="mt-1 text-sm text-muted-foreground">{t.gallerySub}</p>
-          <div className="mt-5 -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 scrollbar-hide">
-            {photos.map((src, i) => (
-              <div
-                key={typeof src === "string" ? src : i}
-                className="glass aspect-square w-[70%] shrink-0 snap-center overflow-hidden rounded-3xl p-1.5 transition-transform sm:w-[45%]"
-              >
-                <img
-                  src={src}
-                  alt={`${childName} — ${i + 1}`}
-                  loading="lazy"
-                  width={800}
-                  height={800}
-                  className="h-full w-full rounded-[1.25rem] object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        </section>
+        <Gallery lang={lang} photos={photos as string[]} childName={childName} />
 
         {/* RSVP */}
         <section className="mt-12">
